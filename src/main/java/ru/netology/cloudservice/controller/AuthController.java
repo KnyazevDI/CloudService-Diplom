@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.netology.cloudservice.models.AuthRequest;
 import ru.netology.cloudservice.models.AuthResponse;
 import ru.netology.cloudservice.security.JwtTokenService;
@@ -18,6 +15,7 @@ import java.util.Base64;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping
 public class AuthController {
 
     @Autowired
@@ -44,10 +42,9 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader("Auth-Token") String token) {
+    public ResponseEntity<?> logout(@RequestHeader("auth-token") String token) {
         userService.logoutUser(token);
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
 
 }

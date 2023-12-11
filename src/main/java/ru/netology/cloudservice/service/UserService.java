@@ -32,7 +32,9 @@ public class UserService {
     }
 
     public void logoutUser(String token) {
-//        var dellToken = token.substring(7);
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
         userRepository.removeToken(token);
     }
 }

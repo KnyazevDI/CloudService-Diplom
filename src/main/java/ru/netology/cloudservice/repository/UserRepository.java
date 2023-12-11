@@ -3,6 +3,7 @@ package ru.netology.cloudservice.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.netology.cloudservice.models.User;
@@ -17,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     public void addTokenToUser(String login, String token);
 
     @Modifying
-    @Query("update User set token = null where token = :token")
-    public void removeToken(String token);
+    @Query("update User user set user.token = null where user.token = :auth-token")
+    public void removeToken(@Param("auth-token") String token);
 
 }

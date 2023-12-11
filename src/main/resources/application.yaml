@@ -8,23 +8,17 @@ jwt:
   lifetime: 86400000
 
 spring:
-  sql:
-    init:
-      mode: always
-      continue-on-error: true
+#  sql:
+#    init:
+#      mode: always
+#      continue-on-error: true
   datasource:
-#    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/Diplom
-    username: root
-    password: mysql
-#  jpa:
-#    hibernate.ddl-auto: update
-#    generate-ddl: false
-#    show-sql: true
-#    properties:
-#      hibernate:
-#        format_sql: true
-#    database: mysql
-#    database-platform: org.hibernate.dialect.MySQLDialect
+    url: jdbc:postgresql://localhost:5432/diplom
+    username: postgres
+    password: knyazev0666
 
-
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
